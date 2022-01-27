@@ -7,14 +7,14 @@
     "build:remix": "remix build",
     "dev:remix": "remix watch",
     "postinstall": "remix setup cloudflare-workers",
-    "build:worker": "cross-env NODE_ENV=production node worker.build.js",
-    "dev:worker": "node worker.build.js",
+    "build-worker": "cross-env NODE_ENV=production node worker.build.js",
+    "dev-worker": "node worker.build.js ",
     "build:css": "cross-env NODE_ENV=production tailwindcss -i ./app/styles/tailwind.css -o ./app/styles/app.css --minify",
     "dev:css": "tailwindcss -i ./app/styles/tailwind.css -o ./app/styles/app.css --watch",
     "dev": "concurrently \"npm:dev:*\"",
     "build": "concurrently \"npm:build:*\"",
     "lint": "eslint --ext \".js,.jsx,.ts,.tsx\" --ignore-path .gitignore .",
-    "start": "miniflare --build-command \"npm run dev:worker\" --watch",
+    "start": "miniflare --build-command \"npm run dev-worker\" --watch",
     "deploy": "npm run build && wrangler publish"
   },
   "dependencies": {
