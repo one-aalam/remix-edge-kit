@@ -4,9 +4,20 @@ import {
   Meta,
   Outlet,
   Scripts,
-  ScrollRestoration
+  ScrollRestoration,
+  LinksFunction
 } from "remix";
 import type { MetaFunction } from "remix";
+
+import appStyleUrl from "~/styles/app.css";
+
+export let links: LinksFunction = () => {
+    return [
+      { rel: "preconnect", href: "//fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "stylesheet", href: appStyleUrl },
+      { rel: "stylesheet", href: "//fonts.googleapis.com/css?family=Work+Sans:300,400,600,700&amp;lang=en" }
+    ];
+};
 
 export const meta: MetaFunction = () => {
   return { title: "New Remix App" };

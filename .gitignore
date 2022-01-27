@@ -4,5 +4,7 @@ node_modules
 /build
 /dist
 /public/build
+/app/styles/app.css
 .mf
 wrangler.toml
+.env
