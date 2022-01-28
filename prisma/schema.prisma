@@ -2,19 +2,21 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
-  previewFeatures = ["dataProxy"]
+  provider        = "prisma-client-js"
+  previewFeatures = ["dataProxy", "referentialIntegrity"]
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  shadowDatabaseUrl    = env("SHADOW_DATABASE_URL")
+  referentialIntegrity = "prisma"
 }
 
 model Note {
-    id  String @id @default(cuid())
-    title String @db.VarChar(255)
-    description  String?
-    createdAt    DateTime                @default(now())
-    updatedAt    DateTime                @updatedAt
+  id          String   @id @default(cuid())
+  title       String   @db.VarChar(255)
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
