@@ -2,24 +2,56 @@
 
 - [Remix Docs](https://remix.run/docs)
 
+## Setup?
+
+### Configure the database ft. Railway App(PostgreSQL)
+- Install the Railway.app CLI by following the instructions at https://docs.railway.app/cli/installation
+- Once installed, login to it `railway login` and initialize a new Railway project `railway init`
+- Provide the following details
+    ```sh
+    Starting Point: Empty Project
+    ✔ Enter project name: project-name
+    ✔ Environment: production
+    ```
+- Go to URL: `https://railway.app/project/[project-id]/setup and link your project through the CLI `railway link [project-id]`
+- Go to PostgreSQL plugin page, the `Connect` tab, and copy the Postgres Connection URL (to be used in the Prisma config section)
+- To interact with the service through CLI, the other commands you might use are `railway run <cmd>`(run commnds in the railway environments) or `railway up`(to deploy your app)
+
+### Use Data Proxy URLs
+For running on the edge, you'd be required to use the [Prisma Data Platform](https://www.prisma.io/docs/concepts/components/prisma-data-platform) (Data Proxy URLs) to interact with your cloud DB instance(no local connections allowed). Get connection string of the form `prisma://aws-us-east-1.prisma-data.com/?api_key=...` from the data platform, by connecting your cloud DB instance.
+
+### Setup Prisma
+1. Set the DATABASE_URL in the .env file to point to your existing database. If your database has no tables yet, read https://pris.ly/d/getting-started
+2. Set the provider of the datasource block in schema.prisma to match your database: `postgresql`(for us). There are other configs we're not using like `mysql`, `sqlite`, `sqlserver` (Preview) or `mongodb` (Preview).
+3. Run `npx prisma db pull` to turn your database schema into a Prisma schema
+4. Open the `.env` file and place the connecting string(Postgres Connection URL) against `DATABASE_URL`. Prisma is smart enough to use this by its special annotation in the `/prisma/schema.prisma` file `env("DATABASE_URL")`. Keep `postgresql` as the DB type
+5. Run `npm run generate` to generate the Prisma Client (with Data Proxy enabled) . You can then start querying your database.
+
+### Misc Steps
+- Migrate: `npm run migrate:dev` and `npm run migrate:deploy`
+- Seed: `npm run seed`
+- Reset - `npm run migrate:reset`
+All the above commands require the original connection string, so keep the connection string handy, and manually update them in `schema.prisma` before running your local migrations. Once done, revert back to the original Data Proxy URLs to allow for Prisma client calls
+
+### Others
+To open studio use `npx prisma studio`
+
+
 ## Development
 
-You will be running two processes during development:
+You will be running several processes during development:
 
 - The Miniflare server (miniflare is a local environment for Cloudflare Workers)
 - The Remix development server
+- TailwindCSS server to watch and emit updated CSS files
 
 ```sh
 # in one tab, start the remix dev server
 $ npm run dev
-
-# in another, start the miniflare server
-$ npm start
 ```
+> If you'd like to change any aspects of this behavior, see how the commands are configured in your `package.json` file
 
 Open up [http://127.0.0.1:8787](http://127.0.0.1:8787) and you should be ready to go!
-
-If you'd rather run everything in a single tab, you can look at [concurrently](https://npm.im/concurrently) or similar tools to run both processes in one tab.
 
 ## Deployment
 

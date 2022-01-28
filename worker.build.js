@@ -21,7 +21,7 @@ require('esbuild')
     plugins: [
         NodeModulesPolyfillPlugin(),
         alias({
-
+            '@prisma/client': require.resolve('@prisma/client'),
         }),
     ],
   })
