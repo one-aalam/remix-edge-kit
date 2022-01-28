@@ -4,18 +4,9 @@
 
 ## Setup?
 
-### Configure the database ft. Railway App(PostgreSQL)
-- Install the Railway.app CLI by following the instructions at https://docs.railway.app/cli/installation
-- Once installed, login to it `railway login` and initialize a new Railway project `railway init`
-- Provide the following details
-    ```sh
-    Starting Point: Empty Project
-    ✔ Enter project name: project-name
-    ✔ Environment: production
-    ```
-- Go to URL: `https://railway.app/project/[project-id]/setup and link your project through the CLI `railway link [project-id]`
-- Go to PostgreSQL plugin page, the `Connect` tab, and copy the Postgres Connection URL (to be used in the Prisma config section)
-- To interact with the service through CLI, the other commands you might use are `railway run <cmd>`(run commnds in the railway environments) or `railway up`(to deploy your app)
+### Configure the database ft. Planetscale(PostgreSQL)
+https://www.prisma.io/docs/guides/database/using-prisma-with-planetscale
+https://github.com/prisma/prisma/issues/7292
 
 ### Use Data Proxy URLs
 For running on the edge, you'd be required to use the [Prisma Data Platform](https://www.prisma.io/docs/concepts/components/prisma-data-platform) (Data Proxy URLs) to interact with your cloud DB instance(no local connections allowed). Get connection string of the form `prisma://aws-us-east-1.prisma-data.com/?api_key=...` from the data platform, by connecting your cloud DB instance.
