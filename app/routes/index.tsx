@@ -1,5 +1,6 @@
 import type { MetaFunction, LoaderFunction } from "remix";
 import { useLoaderData, json, Link } from "remix";
+import { supabaseClient } from '~/lib/supabase.server'
 
 import RemixEdge from "~/components/RemixEdge"
 import SiteLayout from '../components/SiteLayout'
