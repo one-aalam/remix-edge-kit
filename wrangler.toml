@@ -1,5 +1,6 @@
 name = "remix-edge-kit"
 type = "javascript"
+compatibility_date = "2022-01-28"
 
 zone_id = ""
 account_id = ""

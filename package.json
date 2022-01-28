@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "remix-app-template",
+  "name": "remix-edge-kit",
   "description": "",
   "license": "",
   "scripts": {
@@ -11,7 +11,7 @@
     "dev-worker": "node worker.build.js ",
     "build:css": "cross-env NODE_ENV=production tailwindcss -i ./app/styles/tailwind.css -o ./app/styles/app.css --minify",
     "dev:css": "tailwindcss -i ./app/styles/tailwind.css -o ./app/styles/app.css --watch",
-    "dev": "concurrently \"npm:dev:*\"",
+    "dev": "concurrently \"npm:dev:*\" \"npm:start\"",
     "build": "concurrently \"npm:build:*\"",
     "lint": "eslint --ext \".js,.jsx,.ts,.tsx\" --ignore-path .gitignore .",
     "start": "miniflare --build-command \"npm run dev-worker\" --watch",
@@ -22,6 +22,7 @@
     "@remix-run/cloudflare-workers": "^1.1.3",
     "@remix-run/react": "^1.1.3",
     "dotenv": "^10.0.0",
+    "faunadb": "^4.4.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hot-toast": "^2.2.0",

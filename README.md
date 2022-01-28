@@ -12,14 +12,11 @@ You will be running two processes during development:
 ```sh
 # in one tab, start the remix dev server
 $ npm run dev
-
-# in another, start the miniflare server
-$ npm start
 ```
 
 Open up [http://127.0.0.1:8787](http://127.0.0.1:8787) and you should be ready to go!
 
-If you'd rather run everything in a single tab, you can look at [concurrently](https://npm.im/concurrently) or similar tools to run both processes in one tab.
+This branch uses *faunadb*. Once it's setup, put the secret using `wrangler secret put FAUNA_SECRET`, and the same in the `.env` file too as `FAUNA_SECRET=xxxxx`
 
 ## Deployment
 
