@@ -14,7 +14,7 @@
     "dev": "concurrently \"npm:dev:*\" \"npm:start\"",
     "build": "concurrently \"npm:build:*\"",
     "lint": "eslint --ext \".js,.jsx,.ts,.tsx\" --ignore-path .gitignore .",
-    "start": "miniflare --build-command \"npm run dev-worker\" --watch",
+    "start": "miniflare --build-command \"npm run dev-worker\" --watch --global-async-io",
     "generate": "PRISMA_CLIENT_ENGINE_TYPE='dataproxy' prisma generate",
     "seed": "node --require esbuild-register prisma/seed.ts",
     "db:push": "prisma db push",
